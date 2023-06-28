@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "294130386379",
+    "project_id": "cobafirebasealfi",
+    "storage_bucket": "cobafirebasealfi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:294130386379:android:cb225668933db06ddfe24e",
+        "android_client_info": {
+          "package_name": "cobafirebasealfi.cobafirebasealfi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "294130386379-t7u47r3bs0msjns1amtcoo19sd25dbb0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cobafirebasealfi.cobafirebasealfi",
+            "certificate_hash": "9947dd18bbcf06c798ec773bd9a7d383f5b40c0c"
+          }
+        },
+        {
+          "client_id": "294130386379-m1n5vtrophq6beuabuddfehfh78kqfgi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClbDiWS8NR0Ahu07IGsMVIUiCaFSd7QIM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "294130386379-m1n5vtrophq6beuabuddfehfh78kqfgi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
