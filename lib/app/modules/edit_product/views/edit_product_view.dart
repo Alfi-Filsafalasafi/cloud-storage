@@ -20,7 +20,7 @@ class EditProductView extends GetView<EditProductController> {
               if (snapshot.connectionState == ConnectionState.done) {
                 var data = snapshot.data!.data() as Map<String, dynamic>;
                 controller.nameC.text = data["name"];
-                controller.priceC.text = data["price"];
+                controller.priceC.text = data["price"].toString();
                 return Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(

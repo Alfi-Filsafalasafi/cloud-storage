@@ -16,10 +16,12 @@ class EditProductController extends GetxController {
     DocumentReference docData = firestore.collection("products").doc(docID);
 
     try {
+      String dateNow = DateTime.now().toIso8601String();
       await docData.update(
         {
           "name": name,
-          "price": price,
+          "price": int.parse(price),
+          "time": dateNow,
         },
       );
 

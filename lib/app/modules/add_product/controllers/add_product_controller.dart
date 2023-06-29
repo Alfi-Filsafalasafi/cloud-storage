@@ -11,10 +11,12 @@ class AddProductController extends GetxController {
     CollectionReference products = firestore.collection("products");
 
     try {
+      String dateNow = DateTime.now().toIso8601String();
       await products.add(
         {
           "name": name,
-          "price": price,
+          "price": int.parse(price),
+          "time": dateNow,
         },
       );
 

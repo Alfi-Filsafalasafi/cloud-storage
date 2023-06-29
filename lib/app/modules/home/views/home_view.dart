@@ -50,20 +50,26 @@ class HomeView extends GetView<HomeController> {
             //kalau realtime pakai active
             var listAllDocs = snapshot.data!.docs;
             return ListView.builder(
-              itemCount: listAllDocs.length,
-              itemBuilder: (context, index) => ListTile(
-                onTap: () => Get.toNamed(Routes.EDIT_PRODUCT,
-                    arguments: listAllDocs[index].id),
-                title: Text(
-                    "${(listAllDocs[index].data() as Map<String, dynamic>)["name"]}"),
-                subtitle: Text(
-                    "Rp. ${(listAllDocs[index].data() as Map<String, dynamic>)["price"]}"),
-                trailing: IconButton(
-                    onPressed: () =>
-                        controller.deleteProduct(listAllDocs[index].id),
-                    icon: Icon(Icons.delete)),
-              ),
-            );
+                itemCount: listAllDocs.length,
+                itemBuilder: (context, index) {
+                  if ((listAllDocs[index].data()
+                          as Map<String, dynamic>)["price"] >=
+                      100000) {
+                    return ListTile(
+                      onTap: () => Get.toNamed(Routes.EDIT_PRODUCT,
+                          arguments: listAllDocs[index].id),
+                      title: Text(
+                          "${(listAllDocs[index].data() as Map<String, dynamic>)["name"]}"),
+                      subtitle: Text(
+                          "Rp. ${(listAllDocs[index].data() as Map<String, dynamic>)["price"]}"),
+                      trailing: IconButton(
+                          onPressed: () =>
+                              controller.deleteProduct(listAllDocs[index].id),
+                          icon: Icon(Icons.delete)),
+                    );
+                  }
+                  return SizedBox();
+                });
           }
           return Center(
             child: CircularProgressIndicator(),
