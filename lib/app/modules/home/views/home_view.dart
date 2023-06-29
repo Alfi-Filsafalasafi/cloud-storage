@@ -52,10 +52,16 @@ class HomeView extends GetView<HomeController> {
             return ListView.builder(
               itemCount: listAllDocs.length,
               itemBuilder: (context, index) => ListTile(
+                onTap: () => Get.toNamed(Routes.EDIT_PRODUCT,
+                    arguments: listAllDocs[index].id),
                 title: Text(
                     "${(listAllDocs[index].data() as Map<String, dynamic>)["name"]}"),
                 subtitle: Text(
                     "Rp. ${(listAllDocs[index].data() as Map<String, dynamic>)["price"]}"),
+                trailing: IconButton(
+                    onPressed: () =>
+                        controller.deleteProduct(listAllDocs[index].id),
+                    icon: Icon(Icons.delete)),
               ),
             );
           }

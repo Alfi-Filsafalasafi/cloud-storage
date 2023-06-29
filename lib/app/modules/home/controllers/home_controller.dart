@@ -14,4 +14,27 @@ class HomeController extends GetxController {
     CollectionReference products = firestore.collection("products");
     return products.snapshots();
   }
+
+  void deleteProduct(String docID) {
+    DocumentReference docRef = firestore.collection("products").doc(docID);
+
+    try {
+      Get.defaultDialog(
+        title: "Berhasil",
+        middleText: "Apakah kamu yakin menghapus data ini",
+        onConfirm: () async {
+          await docRef.delete();
+          Get.back();
+        },
+        textConfirm: "Yes",
+        textCancel: "Batal",
+      );
+    } catch (e) {
+      print(e);
+      Get.defaultDialog(
+        title: "Terjadi Kesalahan",
+        middleText: "tidak berhasil menghapus data ini",
+      );
+    }
+  }
 }
