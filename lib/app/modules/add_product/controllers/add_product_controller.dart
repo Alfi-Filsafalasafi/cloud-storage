@@ -21,7 +21,12 @@ class AddProductController extends GetxController {
       Get.defaultDialog(
         title: "Berhasil",
         middleText: "Berhasil menambahkan produk",
-        onConfirm: () => Get.back(),
+        onConfirm: () {
+          nameC.clear();
+          priceC.clear();
+          Get.back(); //close dialog
+          Get.back(); //back to homepage
+        },
         textConfirm: "OK",
       );
     } catch (e) {
