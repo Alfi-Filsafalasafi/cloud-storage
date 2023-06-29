@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cobafirebasealfi/app/controllers/auth_controller.dart';
 import 'package:cobafirebasealfi/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -21,12 +22,47 @@ class HomeView extends GetView<HomeController> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) => ListTile(
-          title: Text("Nama Produk"),
-          subtitle: Text("Status :"),
-        ),
+      // body: FutureBuilder<QuerySnapshot<Object?>>(
+      //     future: controller.getData(),
+      //     builder: (context, snapshot) {
+      //       if (snapshot.connectionState == ConnectionState.done) {
+      //         var listAllDocs = snapshot.data!.docs;
+      //         return ListView.builder(
+      //           itemCount: listAllDocs.length,
+      //           itemBuilder: (context, index) => ListTile(
+      //             title: Text(
+      //                 "${(listAllDocs[index].data() as Map<String, dynamic>)["name"]}"),
+      //             subtitle: Text(
+      //                 "Rp. ${(listAllDocs[index].data() as Map<String, dynamic>)["price"]}"),
+      //           ),
+      //         );
+      //       }
+      //       return Center(
+      //         child: CircularProgressIndicator(),
+      //       );
+      //     },),
+
+      //Real Time Database
+      body: StreamBuilder<QuerySnapshot<Object?>>(
+        stream: controller.streamData(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            //kalau realtime pakai active
+            var listAllDocs = snapshot.data!.docs;
+            return ListView.builder(
+              itemCount: listAllDocs.length,
+              itemBuilder: (context, index) => ListTile(
+                title: Text(
+                    "${(listAllDocs[index].data() as Map<String, dynamic>)["name"]}"),
+                subtitle: Text(
+                    "Rp. ${(listAllDocs[index].data() as Map<String, dynamic>)["price"]}"),
+              ),
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.toNamed(Routes.ADD_PRODUCT),
