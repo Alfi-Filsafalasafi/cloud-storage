@@ -19,22 +19,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<User?>(
-        stream: authC.streamAuthStatus,
-        builder: (context, snapshot) {
-          print(snapshot);
-          if (snapshot.connectionState == ConnectionState.active) {
-            return GetMaterialApp(
-              title: "Application",
-              initialRoute:
-                  snapshot.data != null && snapshot.data!.emailVerified == true
-                      ? Routes.HOME
-                      : Routes.LOGIN,
-              getPages: AppPages.routes,
-              // home: snapshot.data != null ? HomeView() : LoginView(),
-            );
-          }
-          return LoadingView();
-        });
+    return GetMaterialApp(
+      title: "Penduduk",
+      initialRoute: Routes.PENDUDUK,
+      getPages: AppPages.routes,
+    );
+
+    // return StreamBuilder<User?>(
+    //     stream: authC.streamAuthStatus,
+    //     builder: (context, snapshot) {
+    //       print(snapshot);
+    //       if (snapshot.connectionState == ConnectionState.active) {
+    //         return GetMaterialApp(
+    //           title: "Application",
+    //           initialRoute:
+    //               snapshot.data != null && snapshot.data!.emailVerified == true
+    //                   ? Routes.HOME
+    //                   : Routes.LOGIN,
+    //           getPages: AppPages.routes,
+    //           // home: snapshot.data != null ? HomeView() : LoginView(),
+    //         );
+    //       }
+    //       return LoadingView();
+    //     });
   }
 }
